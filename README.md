@@ -12,6 +12,11 @@
   <div class="card p-4 shadow">
   <h3 class="text-center mb-4">Mani darbi</h3>
   <div class="input-group mb-3">
+    <select id="prioritate" class="form-select">
+    <option value="low">zema</option>
+    <option value="medium">videja</option>
+    <option value="high">svarigi</option>
+  </select>
   <input id="task-input" type="text" class="form-control" placeholder="Jauns darbs">
   <button id="add-btn" class="btn btn-primary">Pievienot</button>
   </div>
