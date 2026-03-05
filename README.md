@@ -37,7 +37,14 @@
 
         let li = document.createElement("li");
         li.className = "list-group-item d-flex justify-content-between align-items-center";
-        li.innerHTML = text;
+        let span = document.createElement("span");
+      span.textContent = text;
+
+      li.onclick = function(event) {
+      if (event.target.tagName !== "BUTTON") {
+        span.classList.toggle("text-decoration-line-through");
+      }
+      };
 
         let deleteBtn = document.createElement("button");
         deleteBtn.className = "btn btn-danger";
@@ -47,7 +54,7 @@
         {
             li.remove();
         };
-
+        li.appendChild(span);
         li.appendChild(deleteBtn);
         list.appendChild(li);
 
