@@ -55,7 +55,7 @@ function createTask(task){
     badge.textContent = "svarīgi";
   }
   else if(task.priority === "medium"){
-    badge.classList.add("bg-warning","text-dark");
+    badge.classList.add("bg-warning");
     badge.textContent = "vidēja";
   }
   else{
