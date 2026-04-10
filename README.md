@@ -5,21 +5,26 @@
 <title>Mani darbi</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-  <h3 class="text-center mb-3">Mani darbi</h3>
-  <div class="input-group mb-3">
-    <select id="prioritate" class="form-select">
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+  <div class="col-md-8">
+  <div class="card shadow p-4">
+  <h1 class="text-center mb-4">Mani darbi</h1>
+  <div class="input-group mb-3"> 
+    <select id="prioritate" class="form-select" style="max-width: 120px;">
       <option value="low">Zema</option>
       <option value="medium">Vidēja</option>
       <option value="high">Svarīgi</option>
-    </select>
-    <div class="card-body">
-    <input type="text" class="form-control" placeholder="Ieraksti darbu" id="teksts" name="etxt">
-    </div>
+   </select>
+    <input type="text" class="form-control" placeholder="Ieraksti darbu..." id="teksts">
     <button class="btn btn-primary" onclick="addTask()">Pievienot</button>
   </div>
+  <input type="text" class="form-control mb-3" placeholder="Meklēt uzdevumu..." id="teksts">
   <ul id="task-list" class="list-group"></ul>
+  </div>
+  </div>
+  </div>
 </div>
 
 <script>
@@ -68,8 +73,8 @@ function createTask(task){
 
   if(task.done){
     span.classList.add("text-decoration-line-through");
-  }
-
+  }      
+  span.style.cursor = "pointer";
   span.onclick = function(){
     span.classList.toggle("text-decoration-line-through");
     task.done = !task.done;
@@ -78,7 +83,22 @@ function createTask(task){
 
   left.appendChild(badge);
   left.appendChild(span);
+  
+  let editBtn = document.createElement("button");
+  editBtn.className = "btn btn-outline-info btn-sm ms-auto me-2";
+  editBtn.textContent = "Labot";
 
+  editBtn.onclick = function(){
+  let currentText = task.text;
+  let newText = prompt("Mainit uzdevuma nosaukumu:", currentText)
+  
+  if (newText !== null && newText.trim() !== "") {
+  task.text = newText.trim();
+  span.textContent = task.text;
+  saveData();
+  }
+  };
+  
   let deleteBtn = document.createElement("button");
   deleteBtn.className = "btn btn-outline-danger btn-sm";
   deleteBtn.textContent = "Dzēst";
@@ -90,6 +110,7 @@ function createTask(task){
   };
 
   li.appendChild(left);
+  li.appendChild(editBtn);
   li.appendChild(deleteBtn);
 
   list.appendChild(li);
